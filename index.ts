@@ -34,7 +34,7 @@ export async function handler({ build: b, mode }: CreateRequestHandlerArgs) {
 }
 
 /**
- * @param build - A promise of a remix server build, a function that returns a remix server build or a remix build server
+ * @param build - A promise of a remix server build, a function that returns a remix server build or a remix server build
  * @returns A promise that resolves to the remix build
  */
 async function resolveBuild(
