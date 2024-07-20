@@ -16,6 +16,7 @@ type CreateRequestHandlerArgs = {
  */
 export async function handler({ build: b, mode }: CreateRequestHandlerArgs) {
   const build = await resolveBuild(b);
+  const remix = createRequestHandler(build, mode);
   return async function (request: Request) {
     // Try to get the file from the assets build directory
     const { pathname } = new URL(request.url);
@@ -29,7 +30,7 @@ export async function handler({ build: b, mode }: CreateRequestHandlerArgs) {
     if (await file.exists()) return new Response(file);
 
     // Otherwise, delegate the request to the remix server build
-    return createRequestHandler(build, mode)(request);
+    return remix(request);
   };
 }
 
