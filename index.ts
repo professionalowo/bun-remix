@@ -1,7 +1,7 @@
 import type { ServerBuild } from "@remix-run/server-runtime";
 import { createRequestHandler } from "@remix-run/server-runtime";
 import { resolve } from "node:path";
-export type CreateRequestHandlerArgs = {
+type CreateRequestHandlerArgs = {
   build:
     | ServerBuild
     | Promise<ServerBuild>
@@ -31,4 +31,4 @@ async function resolveBuild(
   return build;
 }
 
-export { handler as createRequestHandler };
+export { handler as createRequestHandler, type CreateRequestHandlerArgs };
