@@ -1,0 +1,14 @@
+{
+  "name": "bun-remix",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@remix-run/server-runtime": "^2.10.3"
+  }
+}
