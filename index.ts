@@ -1,5 +1,4 @@
-import type { ServerBuild } from "@remix-run/server-runtime";
-import { createRequestHandler } from "@remix-run/server-runtime";
+import { type ServerBuild, createRequestHandler } from "@remix-run/node";
 import { resolve } from "node:path";
 type CreateRequestHandlerArgs = {
   build:
