@@ -1,15 +1,1 @@
-# bun-remix
-
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.18. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+This project provides a function for using remix in middleware mode with bun. It tries to get assets from the remix assets folder and returns them in a response if they exist, or proxies the request to the provided remix server build.
