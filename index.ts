@@ -1,5 +1,4 @@
 import {
-  type AppLoadContext,
   type RequestHandler,
   type ServerBuild,
   createRequestHandler,
