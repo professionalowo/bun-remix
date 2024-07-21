@@ -1,4 +1,9 @@
-import { type ServerBuild, createRequestHandler } from "@remix-run/node";
+import {
+  type AppLoadContext,
+  type RequestHandler,
+  type ServerBuild,
+  createRequestHandler,
+} from "@remix-run/node";
 import { resolve } from "node:path";
 type CreateRequestHandlerArgs = {
   build:
@@ -9,15 +14,18 @@ type CreateRequestHandlerArgs = {
 };
 
 /**
- * @param {CreateRequestHandlerArgs} the {@link CreateRequestHandlerArgs} object
+ * @param {CreateRequestHandlerArgs} args a {@link CreateRequestHandlerArgs} object
  * @returns a funtion that delegates the request to the remix server build
  * @author Professionalowo
  * @since 1.0.0
  */
-export async function handler({ build: b, mode }: CreateRequestHandlerArgs) {
+export async function handler({
+  build: b,
+  mode,
+}: CreateRequestHandlerArgs): Promise<RequestHandler> {
   const build = await resolveBuild(b);
   const remix = createRequestHandler(build, mode);
-  return async function (request: Request) {
+  return async function (request: Request, loadContext?: AppLoadContext) {
     // Try to get the file from the assets build directory
     const { pathname } = new URL(request.url);
     const filePath = resolve(
@@ -30,12 +38,12 @@ export async function handler({ build: b, mode }: CreateRequestHandlerArgs) {
     if (await file.exists()) return new Response(file);
 
     // Otherwise, delegate the request to the remix server build
-    return remix(request);
+    return remix(request, loadContext);
   };
 }
 
 /**
- * @param build - A promise of a remix server build, a function that returns a remix server build or a remix server build
+ * @param build - A promise of a remix server build, a function that returns a remix server build or a promise of a remix server build
  * @returns A promise that resolves to the remix build
  */
 async function resolveBuild(
