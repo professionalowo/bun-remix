@@ -16,7 +16,7 @@ type CreateRequestHandlerArgs = {
 /**
  * @param {CreateRequestHandlerArgs} args a {@link CreateRequestHandlerArgs} object
  * @returns a funtion that delegates the request to the remix server build
- * @author Professionalowo
+ * @author Professionalowo @link https://github.com/professionalowo
  * @since 1.0.0
  */
 export async function handler({
