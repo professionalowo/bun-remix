@@ -25,7 +25,9 @@ export async function handler({
 }: CreateRequestHandlerArgs): Promise<RequestHandler> {
   const build = await resolveBuild(b);
   const remix = createRequestHandler(build, mode);
-  return async function (request: Request, loadContext?: AppLoadContext) {
+  return async function (
+    ...[request, loadContext]: Parameters<RequestHandler>
+  ) {
     // Try to get the file from the assets build directory
     const { pathname } = new URL(request.url);
     const filePath = resolve(
